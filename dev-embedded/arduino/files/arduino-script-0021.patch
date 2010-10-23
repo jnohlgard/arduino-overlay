@@ -1,0 +1,19 @@
+--- build/linux/work/arduino.orig	2010-10-04 19:14:09.831746468 +0200
++++ build/linux/work/arduino	2010-10-04 19:15:19.225096300 +0200
+@@ -10,13 +10,12 @@
+     lib/*.jar \
+     ;
+ do
+-    CLASSPATH="${CLASSPATH}:${APPDIR}/${LIB}"
++    CLASSPATH="${CLASSPATH+$CLASSPATH:}${APPDIR}/${LIB}"
+ done
++CLASSPATH="${CLASSPATH+$CLASSPATH:}$(java-config -dp antlr)"
+ export CLASSPATH
+ 
+-LD_LIBRARY_PATH=`pwd`/lib:${LD_LIBRARY_PATH}
++LD_LIBRARY_PATH="$(java-config -di rxtx-2)${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
+ export LD_LIBRARY_PATH
+ 
+-export PATH="${APPDIR}/java/bin:${PATH}"
+-
+ java -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel processing.app.Base
