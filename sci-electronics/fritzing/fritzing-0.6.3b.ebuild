@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-MY_P="fritzing.2010.10.01.source"
+MY_P="fritzing.0.6.3.source"
 
 inherit qt4
 
